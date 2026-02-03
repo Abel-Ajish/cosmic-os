@@ -59,8 +59,11 @@ fi
 
 cd "busybox-$BUSYBOX_VERSION"
 make defconfig
-echo "Configuring BusyBox for static build..."
+echo "Configuring BusyBox for static build and fixing networking/tc.c build error..."
 sed -i "s/.*CONFIG_STATIC.*/CONFIG_STATIC=y/" .config
+# Disable TC (Traffic Control) because modern kernel headers removed CBQ definitions, causing compilation errors
+sed -i "s/CONFIG_TC=y/CONFIG_TC=n/" .config
+sed -i "s/CONFIG_FEATURE_TC_INGRESS=y/CONFIG_FEATURE_TC_INGRESS=n/" .config
 echo "Syncing BusyBox config non-interactively..."
 yes "" | make oldconfig
 make -j2
