@@ -1,28 +1,47 @@
 # 🌌 cosmic-os
 
-**cosmic-os** is a Linux kernel–based operating system built **from the ground up**, starting directly from the Linux kernel and a minimal userland.
-The project focuses on learning real operating system internals while producing a **bootable, live OS** compatible with **VirtualBox** and real x86_64 hardware.
+**cosmic-os** is a Linux kernel–based operating system built **from the ground up**, starting directly from the Linux kernel and a minimal userland. It is designed as an educational platform to learn about OS internals, kernel configuration, and the boot process.
 
 This project is **not based on Ubuntu, Debian, or any existing Linux distribution**.
 
 ---
 
-## 🎯 Project Goals
+## 🧭 Documentation & Navigation
 
-- Build an OS directly on top of the **Linux kernel**
-- Manually compile and configure the kernel
-- Create a custom **init system** and **root filesystem**
-- Produce a **bootable Live ISO**
-- Ensure compatibility with **VirtualBox** and laptops
-- Maintain a clean, well-documented educational codebase
+The project is heavily documented to provide NCERT-style clarity on every component:
+
+- [🏗 **Architecture Overview**](docs/architecture.md) — How the layers of the OS fit together.
+- [🛠 **Build Guide**](docs/build-guide.md) — Detailed steps to build the OS locally or in CI.
+- [🐧 **Kernel Configuration**](docs/kernel-config.md) — Explanation of critical kernel options.
+- [🔍 **Troubleshooting**](docs/troubleshooting.md) — Fixes for common boot and build errors.
 
 ---
 
 ## 🧱 High-Level Architecture
+```text
+Hardware → BIOS/UEFI → GRUB (Bootloader) → Linux Kernel → Custom Init (PID 1) → BusyBox Userland → Custom Apps
+```
 
-Bootloader (GRUB) → Linux Kernel → Init System → Userland → Optional GUI
+---
 
-See `docs/architecture.md` for details.
+## 🚀 How to Get the ISO (GitHub Actions)
+
+The easiest way to experience **cosmic-os** is via our automated build pipeline:
+
+1.  Go to the **Actions** tab of this repository.
+2.  Select the latest **"Build cosmic-os ISO"** run.
+3.  Scroll down to the **Artifacts** section and download `cosmic-os-iso`.
+4.  Boot the `.iso` file in **QEMU**, **VirtualBox** (BIOS mode), or flash it to a USB drive.
+
+---
+
+## 📁 Repository Structure
+
+- `apps/`: Custom educational C applications (`hello`, `calc`, `sysinfo`, `powerctl`).
+- `init/`: Source code for the PID 1 process (Shell and C versions).
+- `kernel/`: Kernel configuration fragments.
+- `scripts/`: Automation scripts for setting up the environment and building the OS.
+- `docs/`: Technical deep-dives and guides.
 
 ---
 
