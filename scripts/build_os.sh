@@ -38,6 +38,8 @@ if [ ! -f ".config" ]; then
     ./scripts/config --enable CONFIG_BINFMT_MISC
     ./scripts/config --enable CONFIG_DEVTMPFS
     ./scripts/config --enable CONFIG_DEVTMPFS_MOUNT
+    echo "Syncing kernel config non-interactively..."
+    yes "" | make oldconfig
 fi
 
 echo "Compiling kernel (bzImage)..."
@@ -59,6 +61,8 @@ cd "busybox-$BUSYBOX_VERSION"
 make defconfig
 echo "Configuring BusyBox for static build..."
 sed -i "s/.*CONFIG_STATIC.*/CONFIG_STATIC=y/" .config
+echo "Syncing BusyBox config non-interactively..."
+yes "" | make oldconfig
 make -j2
 make CONFIG_PREFIX="$ROOTFS" install
 
