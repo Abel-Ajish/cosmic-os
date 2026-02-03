@@ -38,7 +38,9 @@ jobs:
           grub-common \
           xorriso \
           wget \
-          cpio
+          cpio \
+          mtools \
+          dosfstools
 
     - name: Build OS
       run: |
