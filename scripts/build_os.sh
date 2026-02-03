@@ -38,6 +38,8 @@ if [ ! -f ".config" ]; then
     ./scripts/config --enable CONFIG_BINFMT_MISC
     ./scripts/config --enable CONFIG_DEVTMPFS
     ./scripts/config --enable CONFIG_DEVTMPFS_MOUNT
+    ./scripts/config --enable CONFIG_BLK_DEV_INITRD
+    ./scripts/config --enable CONFIG_RD_GZIP
     echo "Syncing kernel config non-interactively..."
     yes "" | make oldconfig
 fi
@@ -93,6 +95,9 @@ else
     exit 1
 fi
 
+# IMPORTANT: The kernel looks for /init by default
+ln -sf sbin/init "$ROOTFS/init"
+
 # 4. Compile Custom Apps
 echo "--- [4/6] Compiling Custom Apps ---"
 cd "$PROJECT_ROOT"
@@ -115,7 +120,7 @@ set default=0
 set timeout=5
 
 menuentry "cosmic-os (Learning Edition)" {
-    linux /boot/vmlinuz quiet splash
+    linux /boot/vmlinuz quiet splash rdinit=/sbin/init
     initrd /boot/initrd.img
 }
 EOF
