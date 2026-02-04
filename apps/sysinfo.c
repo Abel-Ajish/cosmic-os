@@ -42,11 +42,11 @@ void print_uptime() {
 }
 
 int main() {
-    printf("--- 🌌 cosmic-os System Information ---\n");
-    printf("OS:          cosmic-os Stage 2\n");
+    printf("\033[1;36m--- 🌌 cosmic-os System Information ---\033[0m\n");
+    printf("OS:          cosmic-os Stage 3+\n");
     print_cpu_info();
     print_mem_info();
     print_uptime();
-    printf("---------------------------------------\n");
+    printf("\033[1;36m---------------------------------------\033[0m\n");
     return 0;
 }

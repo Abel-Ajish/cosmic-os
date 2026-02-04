@@ -70,8 +70,25 @@ cd ..
 # 4. Custom Apps
 echo "--- [4/6] Compiling Custom Apps ---"
 gcc -static apps/hello.c -o rootfs/bin/hello
-gcc -static apps/calculator.c -o rootfs/bin/calc
+gcc -static apps/cosmic_calc.c -o rootfs/bin/cosmic-calc
 gcc -static apps/sysinfo.c -o rootfs/bin/sysinfo
+gcc -static apps/powerctl.c -o rootfs/bin/powerctl
+gcc -static apps/cosmic_shell.c -o rootfs/bin/cosmic-shell
+gcc -static apps/cosmic_top.c -o rootfs/bin/cosmic-top
+gcc -static apps/cosmic_editor.c -o rootfs/bin/cosmic-editor
+gcc -static apps/whoami.c -o rootfs/bin/whoami
+gcc -static apps/cosmic_fetch.c -o rootfs/bin/cosmic-fetch
+gcc -static apps/cosmic_uptime.c -o rootfs/bin/cosmic-uptime
+gcc -static apps/cosmic_quotes.c -o rootfs/bin/cosmic-quotes
+gcc -static apps/cosmic_time.c -o rootfs/bin/cosmic-time
+gcc -static apps/cosmic_matrix.c -o rootfs/bin/cosmic-matrix
+gcc -static apps/cosmic_todo.c -o rootfs/bin/cosmic-todo
+gcc -static apps/cosmic_pulse.c -o rootfs/bin/cosmic-pulse
+gcc -static apps/cosmic_snake.c -o rootfs/bin/cosmic-snake
+gcc -static apps/cosmic_login.c -o rootfs/bin/cosmic-login
+gcc -static apps/cosmic_ping.c -o rootfs/bin/cosmic-ping
+gcc -static apps/cosmic_netinfo.c -o rootfs/bin/cosmic-netinfo
+gcc -static apps/cosmic_http.c -o rootfs/bin/cosmic-http
 
 # 5. Initramfs
 echo "--- [5/6] Building Initramfs ---"

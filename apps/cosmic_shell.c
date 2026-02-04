@@ -10,10 +10,12 @@
 
 void print_prompt() {
     char cwd[PATH_MAX];
+    char *user = getenv("USER");
+    if (!user) user = "cosmic";
     if (getcwd(cwd, sizeof(cwd)) == NULL) {
         strcpy(cwd, "?");
     }
-    printf("\033[1;36m🌌 cosmic\033[0m@\033[1;35mos\033[0m:\033[1;34m%s$ \033[0m", cwd);
+    printf("\033[1;36m🌌 %s\033[0m@\033[1;35mos\033[0m:\033[1;34m%s$ \033[0m", user, cwd);
     fflush(stdout);
 }
 
@@ -29,10 +31,22 @@ void help() {
     printf("  poweroff  - Power off the system\n");
     printf("  exit      - Exit the shell\n");
     printf("\nStage 3+ commands:\n");
-    printf("  cosmic-top   - View running processes\n");
-    printf("  cosmic-edit  - Simple text editor\n");
-    printf("  whoami       - Show current user\n");
-    printf("  cosmic-fetch - System summary (ASCII art)\n");
+    printf("  cosmic-top     - View running processes\n");
+    printf("  cosmic-editor  - Advanced text editor\n");
+    printf("  cosmic-fetch   - System summary (ASCII art)\n");
+    printf("  cosmic-uptime  - Show system uptime\n");
+    printf("  cosmic-quotes  - Get a cosmic NRSV quote\n");
+    printf("  cosmic-time    - View system time and date\n");
+    printf("  cosmic-matrix  - Enter the cosmic matrix\n");
+    printf("  cosmic-todo    - Manage your cosmic tasks\n");
+    printf("  cosmic-pulse   - Visual system monitor\n");
+    printf("  cosmic-snake   - Classic snake game\n");
+    printf("  cosmic-ping    - Network connectivity test\n");
+    printf("  cosmic-netinfo - View network interface details\n");
+    printf("  cosmic-http    - Fetch content from a URL\n");
+    printf("  cosmic-logout  - Log out of current session\n");
+    printf("  cosmic-calc    - Simple calculator\n");
+    printf("  whoami         - Show current user\n");
     printf("\nYou can also run standard Linux commands from BusyBox (ls, cat, mkdir, etc).\n");
 }
 
@@ -68,7 +82,7 @@ int main() {
         // Built-in commands
         if (strcmp(args[0], "help") == 0) {
             help();
-        } else if (strcmp(args[0], "exit") == 0) {
+        } else if (strcmp(args[0], "exit") == 0 || strcmp(args[0], "cosmic-logout") == 0) {
             break;
         } else if (strcmp(args[0], "clear") == 0) {
             printf("\033[H\033[J");

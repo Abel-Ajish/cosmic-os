@@ -55,6 +55,20 @@ if [ ! -f ".config" ]; then
     ./scripts/config --enable CONFIG_BLK_DEV_INITRD
     ./scripts/config --enable CONFIG_RD_GZIP
     
+    ./scripts/config --enable CONFIG_NET
+    ./scripts/config --enable CONFIG_INET
+    ./scripts/config --enable CONFIG_NETDEVICES
+    ./scripts/config --enable CONFIG_NET_CORE
+    ./scripts/config --enable CONFIG_ETHERNET
+    ./scripts/config --enable CONFIG_NET_VENDOR_REALTEK
+    ./scripts/config --enable CONFIG_8139CP
+    ./scripts/config --enable CONFIG_8139TOO
+    ./scripts/config --enable CONFIG_NET_VENDOR_INTEL
+    ./scripts/config --enable CONFIG_E1000
+    
+    ./scripts/config --enable CONFIG_PCNET32
+    ./scripts/config --enable CONFIG_DRM_VBOXVIDEO
+    
     echo "Syncing kernel config non-interactively..."
     yes "" | make oldconfig
 fi
@@ -121,7 +135,7 @@ ln -sf sbin/init "$ROOTFS/init"
 
 # Compile Custom Apps
 echo "Compiling Custom Apps..."
-APPS=("hello" "calculator:calc" "sysinfo" "powerctl" "cosmic_shell:cosmic-shell" "cosmic_top:cosmic-top" "cosmic_edit:cosmic-edit" "whoami:whoami" "cosmic_fetch:cosmic-fetch")
+APPS=("hello" "cosmic_calc:cosmic-calc" "sysinfo" "powerctl" "cosmic_shell:cosmic-shell" "cosmic_top:cosmic-top" "cosmic_editor:cosmic-editor" "whoami:whoami" "cosmic_fetch:cosmic-fetch" "cosmic_uptime:cosmic-uptime" "cosmic_quotes:cosmic-quotes" "cosmic_time:cosmic-time" "cosmic_matrix:cosmic-matrix" "cosmic_todo:cosmic-todo" "cosmic_pulse:cosmic-pulse" "cosmic_snake:cosmic-snake" "cosmic_login:cosmic-login" "cosmic_ping:cosmic-ping" "cosmic_netinfo:cosmic-netinfo" "cosmic_http:cosmic-http")
 for app_info in "${APPS[@]}"; do
     SRC="${app_info%%:*}"
     DEST="${app_info#*:}"

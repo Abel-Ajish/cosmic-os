@@ -17,6 +17,10 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(argv[1], "halt") == 0) {
         printf("Halting...\n");
         sync();
+        reboot(LINUX_REBOOT_CMD_HALT);
+    } else if (strcmp(argv[1], "poweroff") == 0) {
+        printf("Powering off...\n");
+        sync();
         reboot(LINUX_REBOOT_CMD_POWER_OFF);
     } else {
         printf("Unknown command: %s\n", argv[1]);

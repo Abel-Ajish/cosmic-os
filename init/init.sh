@@ -39,7 +39,10 @@ echo ""
 
 # Enter cosmic shell with a fallback to prevent kernel panic on exit
 while true; do
-    /bin/cosmic-shell
-    echo "Cosmic Shell exited. Restarting in 3 seconds..."
-    sleep 3
+    /bin/cosmic-login
+    if [ $? -eq 0 ]; then
+        /bin/cosmic-shell
+    fi
+    echo "Session ended. Restarting in 1 second..."
+    sleep 1
 done
