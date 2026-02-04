@@ -47,8 +47,28 @@ jobs:
         chmod +x scripts/build_os.sh
         ./scripts/build_os.sh
 
-    - name: Upload ISO
+    - name: Upload ISO Artifact
       uses: actions/upload-artifact@v4
       with:
         name: cosmic-os-iso
         path: cosmic-os.iso
+
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: cosmic-os.iso
+        name: cosmic-os ${{ github.ref_name }}
+        body: |
+          🌌 **cosmic-os Release ${{ github.ref_name }}**
+          
+          This release was automatically built via GitHub Actions.
+          
+          ### 🛠️ Changes in this version:
+          - Automatic ISO build and hardening.
+          - Fixed Kernel Panic (ELOOP/Static Link issues).
+          - Enhanced Init system with survival loops.
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
