@@ -11,6 +11,15 @@ void mount_fs() {
     if (mount("proc", "/proc", "proc", 0, NULL) != 0) perror("mount proc");
     if (mount("sysfs", "/sys", "sysfs", 0, NULL) != 0) perror("mount sys");
     if (mount("devtmpfs", "/dev", "devtmpfs", 0, NULL) != 0) perror("mount dev");
+    
+    // Stage 3: Persistence support
+    printf("[INIT] Attempting to mount data partition...\n");
+    mkdir("/data", 0755);
+    if (mount("/dev/sda2", "/data", "ext4", 0, NULL) == 0) {
+        printf("[INIT] Persistent storage mounted at /data\n");
+    } else {
+        printf("[INIT] No persistent storage found (sda2 mount failed)\n");
+    }
 }
 
 int main() {
@@ -25,8 +34,8 @@ int main() {
 
     if (pid == 0) {
         // Child process
-        char *args[] = {"/bin/sh", NULL};
-        execv("/bin/sh", args);
+        char *args[] = {"/bin/cosmic-shell", NULL};
+        execv("/bin/cosmic-shell", args);
         // If execv returns, it failed
         perror("execv");
         exit(1);
@@ -43,8 +52,8 @@ int main() {
             // In a real init, we'd restart the shell or handle it
             pid = fork();
             if (pid == 0) {
-                char *args[] = {"/bin/sh", NULL};
-                execv("/bin/sh", args);
+                char *args[] = {"/bin/cosmic-shell", NULL};
+                execv("/bin/cosmic-shell", args);
                 exit(1);
             }
         }

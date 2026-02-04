@@ -121,7 +121,7 @@ ln -sf sbin/init "$ROOTFS/init"
 
 # Compile Custom Apps
 echo "Compiling Custom Apps..."
-APPS=("hello" "calculator:calc" "sysinfo" "powerctl")
+APPS=("hello" "calculator:calc" "sysinfo" "powerctl" "cosmic_shell:cosmic-shell" "cosmic_top:cosmic-top" "cosmic_edit:cosmic-edit" "whoami:whoami" "cosmic_fetch:cosmic-fetch")
 for app_info in "${APPS[@]}"; do
     SRC="${app_info%%:*}"
     DEST="${app_info#*:}"

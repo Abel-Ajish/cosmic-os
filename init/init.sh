@@ -37,9 +37,9 @@ echo "  The Learning Operating System"
 echo "========================================"
 echo ""
 
-# Enter interactive shell with a fallback to prevent kernel panic on exit
+# Enter cosmic shell with a fallback to prevent kernel panic on exit
 while true; do
-    /bin/sh
-    echo "Shell exited. Restarting in 3 seconds..."
+    /bin/cosmic-shell
+    echo "Cosmic Shell exited. Restarting in 3 seconds..."
     sleep 3
 done

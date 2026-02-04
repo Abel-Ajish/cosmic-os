@@ -23,7 +23,7 @@ Hardware
 │
 ├── Custom C Applications (Educational tools)
 │
-└── Interactive Shell (User engagement)
+└── Cosmic Shell (User engagement - Stage 2)
 ```
 
 ## 🛤 Boot Flow
@@ -33,7 +33,7 @@ Hardware
 4. **Kernel Decompression:** The `bzImage` is loaded into memory and decompressed.
 5. **Kernel Init:** Hardware drivers are initialized, virtual filesystems mounted.
 6. **PID 1 Execution:** Kernel hands over control to `/sbin/init`.
-7. **Userland Shell:** A shell starts, allowing user interaction.
+7. **Cosmic Shell Launch:** The custom themed shell starts, providing system control.
 
 ## 📂 Repository Structure
 - `kernel/`: Configuration fragments and patches.
