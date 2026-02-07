@@ -1,0 +1,7 @@
+/* App-specific styles */
+.app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Additional app-level customizations can go here */
